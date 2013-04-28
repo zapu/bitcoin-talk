@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            bitcoinz $.$
+        </title>
+        <meta charset='utf-8'>
+        <script src='slides.js'>
+        </script>
+    </head>
+    
+    <body style='display: none'>
+        <section class='slides layout-widescreen'>
+            <article>
+              <h1>
+                  Bitcoin
+              </h1>
+              <div class="presenter">
+                  <p>
+                      Michał Zochniak
+                  </p>
+              </div>  
+              <div style="margin-top:50px;">
+                  <div style="display:block;" id="divfront">
+                    <div style="float: left; width: 550px;">
+                      MtGox exchange:
+                      <ul id="goxul">
+                        <li>realtime</li>
+                        <li>mtgox</li>
+                        <li>goes</li>
+                        <li>here</li>
+                        <li>...</li>
+                      </ul>
+                    </div>
+                    <div style="float: right; text-align: left; width: 400px;">
+                      Transactions:
+                      <ul id="transul">
+                        <li>realtime</li>
+                        <li>blockchain</li>
+                        <li>goes</li>
+                        <li>here</li>
+                        <li>...</li>
+                      </ul>
+                    </div>
+                    <div style="clear: both;"/>
+                  </div>
+               </div>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/group.png"/>
+                </div>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/paper.png"/>
+                </div>
+            </article>
+            <article>
+                <h1>Peer to peer</h1>
+                <h2>Brak centralnego autorytetu</h2>
+            </article>
+            <article>
+                <h3>
+                    Transakcje
+                </h3>
+                <ul>
+                    <li>
+                        Kwota,
+                    </li>
+                    <li>
+                        Skąd,
+                        <ul>
+                            <li>Podpis cyfrowy.</li>
+                        </ul>
+                    </li>
+                    <li>Dokąd,</li>
+                    <li>Opłaty "manipulacyjne".</li>
+                </ul>
+            </article>
+            <article>
+                <h3>
+                    Adresy
+                </h3>
+                <ul>
+                    <li>
+                        ECDSA.
+                    </li>
+                    <li>
+                        Klucz publiczny, prywatny.
+                    </li>
+                    <li>
+                        "Adres" do transakcji do hash klucza publicznego.
+                        <ul>
+                            <li>A raczej kombinacja skrótów.</li>
+                            <li>A właściwie:
+                                <ul>
+                                    <li>pub - klucz publiczny</li>
+                                    <li>ver - "wersja", 0x00 dla "głównej sieci"</li>
+                                    <li>a = ver + RIPEMD160(SHA256(pub))</li>
+                                    <li>chk = SHA256(SHA256(a))[0:4]</li>
+                                    <li>addr = Base58(a+chk)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h3>
+                    Przykładowy adres
+                </h3>
+                <ul>
+                    <li>priv: 18E14A7B6A307F426A94F8114701E7C8E774E7F9A47E2C2035DB29A206321725</li>
+                    <li>pub:
+                        0450863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B23522C<br/>
+                        D470243453A299FA9E77237716103ABC11A1DF38855ED6F2EE187E9C582BA6</li>
+                    <li>checksum: <span style="color: red;">D61967F6</span></li>
+                    <li>adres: 00010966776006953D5567439E5E39F86A0D273BEE<span style="color: red;">D61967F6</span></li>
+                    <li>"czytelny" adres: 16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM</li>
+            </article>
+            <article>
+                <h3>
+                    Bloki
+                </h3>
+                <ul>
+                    <li>Gromadzą transakcje.</li>
+                    <li>Ciąg bloków to "linia historyczna".</li>
+                    <li>Węzły generujące bloki - historycy (?).</li>
+                    <li>Mając wystarczająco dużo rzetelnych historyków, zakładamy, że opisana historia jest prawdziwa</li>
+                </ul>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/diag.png"/>
+                </div>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/trans.png"/>
+                </div>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/trans2.png"/>
+                </div>
+            </article>
+            <article>
+                <ul>
+                    <li>Wejścia:
+                    <ul>
+<li>Previous tx: f5d8ee39a430901c91a5917b9f2dc19d6d1a0e9cea205b009ca73dd04470b9a6
+<li>Index: 0
+<li>scriptSig:
+    <span style="font-style: italic; color: red;">
+        304502206e21798a4...e1446618c4571d10 <span style="font-size:80%">(sig)</span>
+    </span>
+    <span style="font-style: italic; color: blue;">
+        90db022100e2a...d5d6cc8d25c6b241501 <span style="font-size:80%">(pubKeyHash)</span>
+    </span>
+</ul></li>
+<li>Wyjścia:
+    <ul>
+<li>Kwota: 50
+<li>scriptPubKey: <b>OP_DUP OP_HASH160</b> 
+    <span style="font-style: italic; color: blue;">
+        404371705fa9bd789a2fcd52d2c580b65d35549d <span style="font-size:80%">(pubKeyHash/address)</span>
+    </span>
+<b>OP_EQUALVERIFY OP_CHECKSIG</b>
+</ul></li>
+</ul>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/trans3.png"/>
+                </div>
+            </article>
+            <article>
+                <table class="wikitable">
+<tbody><tr>
+<th> Stack
+</th>
+<th> Script
+</th>
+</tr>
+<tr>
+<td>Empty.
+</td>
+<td> &lt;sig&gt; &lt;pubKey&gt; OP_DUP OP_HASH160 &lt;pubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG
+</td>
+</tr>
+<tr>
+<td>&lt;sig&gt; &lt;pubKey&gt;
+</td>
+<td> OP_DUP OP_HASH160 &lt;pubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG
+</td>
+</tr>
+<tr>
+<td>&lt;sig&gt; &lt;pubKey&gt; &lt;pubKey&gt;
+</td>
+<td> OP_HASH160 &lt;pubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG
+</td>
+</tr>
+<tr>
+<td>&lt;sig&gt; &lt;pubKey&gt; &lt;pubHashA&gt;
+</td>
+<td>&lt;pubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG
+</td>
+</tr>
+<tr>
+<td>&lt;sig&gt; &lt;pubKey&gt; &lt;pubHashA&gt; &lt;pubKeyHash&gt;
+</td>
+<td>OP_EQUALVERIFY OP_CHECKSIG
+</td>
+</tr>
+<tr>
+<td>&lt;sig&gt; &lt;pubKey&gt;
+</td>
+<td>OP_CHECKSIG
+</td>
+</tr>
+<tr>
+<td>true
+</td>
+<td>Empty.
+</td>
+</tr></tbody></table>
+            </article>
+            <article>
+                <h3>
+                    Kontrakty
+                </h3>
+                <ul>
+                    <li>Wiele podpisów</li>
+                    <li>Brak podpisu - "finders keepers"</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Kopanie</h3>
+                <ul>
+                    <li>Znalezienie najdłuższego łańcucha.</li>
+                    <li>Zebranie i <b>zweryfikowanie</b> transakcji.</li>
+                    <li>Obliczenie "proof of work".</li>
+                    <li>Opublikowanie bloku.</li>
+                </ul>
+            </article>
+            <article>
+                <div class="image">
+                    <img src="img/block.png"/>
+                </div>
+            </article>
+            <article>
+                <h3>
+                    Kopanie
+                </h3>
+                <ul>
+                    <li>Skrót bloku musi być mniejszy niż pewna wartość.
+                        <ul>
+                            <li>Czyli musi się zaczynać pewną ilością zer.</li>
+                        </ul>
+                    </li>
+                    <li>Ta "wartość" zależy od "trudności".</li>
+                    <li>Trudność zależy od tego ile Bitcoinów zostało już wykopanych.</li>
+                    <li>Manipulujemy zmienną "nonce" aż trafimy na pasujący skrót</li>
+                </ul>
+            </article>
+            <article>
+                <h3>
+                    Kopanie
+                </h3>
+                <div class="image">
+                    <img src="img/mining.png"/>
+                </div>
+            </article>
+            <article>
+                <h3>
+                    Double spend
+                </h3>
+                <div class="image">
+                    <img src="img/fork.png"/>
+                </div>
+            </article>
+            <article>
+                <h3>
+                    Dziękuję za uwagę
+                </h3>
+                <ul>
+                    <li>
+                        http://bitcoin.org
+                        <ul>
+                            <li>http://bitcoin.org/bitcoin.pdf</li>
+                        </ul>
+                    </li>
+                    <li>http://en.bitcoin.it</li>
+                    <li>https://mtgox.com</li>
+                    <li>https://bitcointalk.org</li>
+                    <li>http://reddit.com/r/bitcoin</li>
+                </ul>
+                 <div style="margin-top:50px;" id="div2">
+                  
+               </div>
+            </article>
+        </section>
+    </body>
+
+
+
+    <script src='play.js'>
+    </script>
+
+    <script src='zapu.js'>
+    </script>
+
+</html>
