@@ -1,0 +1,14 @@
+#goxul li {
+	margin: 0;
+	list-style: none;
+}
+
+#transul li {
+	margin: 0;
+	list-style: none;
+}
+
+table.wikitable tr:hover {
+	background-color: rgb(244,66,100);
+	color: white;
+};
